@@ -97,7 +97,9 @@ void main(void)
         }
 
         if (RC3 == 0){
+            __delay_ms(1000);
             RA1 = 0;        // LED OFF
+            __delay_ms(1000);
             RC2 = 1;        // Power Off
         }
     }
