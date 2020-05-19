@@ -44,6 +44,7 @@
 #include "mcc_generated_files/mcc.h"
 //#define FCY 16000000UL    //16MHz
 #define FCY 31000UL     //31KHz
+
 /*
                          Main application
  */
@@ -76,8 +77,17 @@ void main(void)
         // Add your application code
         NOP();
         SLEEP();
-        __delay_ms(1000);   // eliminate chattering 
-        if (RA5 == 1){      // if SW On
+        /*
+         * eliminate chattering & Press the power button for 3 seconds to turn on.
+         */ 
+        for(i=0;i<12;i++){  //wait for 3 seconds maximum, blink LED
+            RA1 = 0;
+            __delay_ms(150);
+            RA1 = 1;        // LED ON
+            __delay_ms(100);
+        }        
+  
+        if (RA5 & (!RC3)){      // if SW On and RPi=OFF
             RC2 = 0;        // Power On
             for(i=0;i<120;i++){  //wait for 120 seconds maximum, blink LED
                 RA1 = 0;
@@ -86,7 +96,7 @@ void main(void)
                 __delay_ms(300);
                 if (RC3 == 1) break;
             }
-        } else if (RC3 == 1) {  // goto shutdown
+        } else if (RC5 & RC3) {  // if SW On and RPi=ON
             for(i=0;i<240;i++){  //wait for 120 seconds maximum, blink LED
                 RA1 = 0;
                 __delay_ms(300);
@@ -97,7 +107,7 @@ void main(void)
         }
 
         if (RC3 == 0){
-            __delay_ms(1000);
+            __delay_ms(1000);            
             RA1 = 0;        // LED OFF
             __delay_ms(1000);
             RC2 = 1;        // Power Off
