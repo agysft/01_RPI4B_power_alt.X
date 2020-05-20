@@ -71,25 +71,25 @@ void main(void)
     int i;
     RC2 = 1;        // Power Off
     RA1 = 0;        // LED OFF
-    //RA4 = 0;        // no use
     while (1)
     {
         // Add your application code
         NOP();
         SLEEP();
         /*
-         * eliminate chattering & Press the power button for 3 seconds to turn on.
+         * eliminate chattering 
+         *   & Press the power button for 3 seconds to turn on.
          */ 
-        for(i=0;i<12;i++){  //wait for 3 seconds maximum, blink LED
+        for(i=0;i<12;i++){  //wait for 3 seconds, blink LED
             RA1 = 0;
             __delay_ms(150);
             RA1 = 1;        // LED ON
             __delay_ms(100);
         }        
   
-        if (RA5 & (!RC3)){      // if SW On and RPi=OFF
+        if (RA5 & (!RC3)){  // if SW On and RPi=OFF
             RC2 = 0;        // Power On
-            for(i=0;i<120;i++){  //wait for 120 seconds maximum, blink LED
+            for(i=0;i<120;i++){ //wait for 120 seconds maximum, blink LED
                 RA1 = 0;
                 __delay_ms(700);
                 RA1 = 1;        // LED ON
