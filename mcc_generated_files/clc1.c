@@ -73,8 +73,8 @@ void CLC1_Initialize(void)
     CLC1GLS2 = 0x00;
     // LC1G4D1N disabled; LC1G4D2N disabled; LC1G4D3N disabled; LC1G4D4N disabled; LC1G4D1T disabled; LC1G4D2T disabled; LC1G4D3T disabled; LC1G4D4T disabled; 
     CLC1GLS3 = 0x00;
-    // LC1EN enabled; LCINTN enabled; LCINTP enabled; LC1MODE AND-OR; LC1OE enabled; 
-    CLC1CON = 0xD8;
+    // LC1EN enabled; LCINTN disabled; LCINTP enabled; LC1MODE AND-OR; LC1OE enabled; 
+    CLC1CON = 0xD0;
 
     // Clear the CLC interrupt flag
     PIR3bits.CLC1IF = 0;
@@ -82,11 +82,11 @@ void CLC1_Initialize(void)
     PIE3bits.CLC1IE = 1;
 }
 
-void CLC1_ISR(void)
-{
-    // Clear the CLC interrupt flag
-    PIR3bits.CLC1IF = 0;
-}
+//void CLC1_ISR(void)
+//{
+//    // Clear the CLC interrupt flag
+//    PIR3bits.CLC1IF = 0;
+//}
 
 bool CLC1_OutputStatusGet(void)
 {

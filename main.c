@@ -45,6 +45,8 @@
 //#define FCY 16000000UL    //16MHz
 #define FCY 31000UL     //31KHz
 
+bool POffFlug = false;
+int IntSource = 0;
 /*
                          Main application
  */
@@ -79,41 +81,81 @@ void main(void)
         /*
          * eliminate chattering 
          *   & Press the power button for 3 seconds to turn on.
-         */ 
-        for(i=0;i<12;i++){  //wait for 3 seconds, blink LED
-            RA1 = 0;
-            __delay_ms(150);
-            RA1 = 1;        // LED ON
-            __delay_ms(100);
-        }        
-  
-        if (RA5 & (!RC3)){  // if SW On and RPi=OFF
-            RC2 = 0;        // Power On
-            for(i=0;i<120;i++){ //wait for 120 seconds maximum, blink LED
-                RA1 = 0;
-                __delay_ms(700);
-                RA1 = 1;        // LED ON
-                __delay_ms(300);
-                if (RC3 == 1) break;
-            }
-        } else if (RC5 & RC3) {  // if SW On and RPi=ON
-            for(i=0;i<240;i++){  //wait for 120 seconds maximum, blink LED
-                RA1 = 0;
-                __delay_ms(300);
-                RA1 = 1;        // LED ON
-                __delay_ms(200);
-                if (RC3 == 0) break;
-            }
-        }
+         */
 
-        if (RC3 == 0){
-            __delay_ms(1000);            
-            RA1 = 0;        // LED OFF
-            __delay_ms(1000);
-            RC2 = 1;        // Power Off
+        for(i=0;i<6;i++){  //wait for 1.5 seconds, blink LED
+            RA1 = ~RA1;
+            __delay_ms(100);
+            RA1 = ~RA1;
+            __delay_ms(150);
         }
+        if ( IntSource == 2){
+            if (POffFlug){
+                for(i=0;i<12;i++){  //wait for 3 seconds, blink LED
+                    RA1 = ~RA1;
+                    __delay_ms(100);
+                    RA1 = ~RA1;
+                    __delay_ms(150);
+                }
+                RA1 = 0;        // LED OFF
+                RC2 = 1;        // Power Off
+                POffFlug = false;
+            } else {
+                if (RC3){
+                    POffFlug = true;
+                    RA1 = 0;        // LED OFF
+                } else {
+                    for(i=0;i<120;i++){ //wait for 120 seconds maximum, blink LED
+                        RA1 = 0;
+                        __delay_ms(700);
+                        RA1 = 1;        // LED ON
+                        __delay_ms(300);
+                        if (RC3) break;
+                    }
+                    if (!RC3){
+                        RA1 = 0;        // LED OFF
+                        RC2 = 1;        // Power Off
+                        POffFlug = false;
+                    }
+                }
+            }
+        }
+        if ( IntSource == 1){
+            for(i=0;i<6;i++){  //wait for 1.5 seconds, blink LED
+                RA1 = ~RA1;
+                __delay_ms(100);
+                RA1 = ~RA1;
+                __delay_ms(150);
+            }
+            if ( RA5 & (!RC3) ){  // if SW On and RPi=OFF
+                RC2 = 0;        // Power On
+                for(i=0;i<120;i++){ //wait for 120 seconds maximum, blink LED
+                    RA1 = 0;
+                    __delay_ms(700);
+                    RA1 = 1;        // LED ON
+                    __delay_ms(300);
+                    if (RC3 == 1) break;
+                }
+            }
+        }
+        IntSource = 0;
     }
 }
+
+void CLC1_ISR(void)
+{
+    // Clear the CLC interrupt flag
+    PIR3bits.CLC1IF = 0;
+    IntSource = 1;
+}
+
+void CLC2_ISR(void)
+{
+    // Clear the CLC interrupt flag
+    PIR3bits.CLC2IF = 0;
+    IntSource = 2;
+}
+
 /**
  End of File
 */

@@ -1279,7 +1279,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="CLC1" registerAlias="CLCCON"/>
-         <value>216</value>
+         <value>208</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="CLC1" registerAlias="CLCCON" settingAlias="LCINTP" alias="enabled"/>
@@ -1430,12 +1430,12 @@
          <value>disabled</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Interrupt Module" name="IVT_NAME"/>
-         <value>IVT1</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="System Module" registerAlias="CONFIG1" settingAlias="CP" alias="OFF"/>
          <value>128</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Interrupt Module" name="IVT_NAME"/>
+         <value>IVT1</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="CLC1" registerAlias="CLCGLS0" settingAlias="LCG1D3T"/>
@@ -2139,7 +2139,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="CLC1" registerAlias="CLCCON" settingAlias="LCINTN"/>
-         <value>enabled</value>
+         <value>disabled</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="Pin Module" registerAlias="TRISC" settingAlias="TRISC4" alias="input"/>
@@ -3156,12 +3156,12 @@
          <hash>b8af9e42ed969e6631625050be7f916668ca1eac9741a81aca2ad153a7163692</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files/clc1.h</file>
-         <hash>a8fcadce2ffb96b1cda1657e37b2d88fe6eea282efe9deb164484a7fcc6c838e</hash>
-      </entry>
-      <entry>
          <file>main.c</file>
          <hash>6c4f9062fae1429f90358272424a73a6b4c1acf28244b6b06cc494d297a9fcfc</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files/clc1.h</file>
+         <hash>a8fcadce2ffb96b1cda1657e37b2d88fe6eea282efe9deb164484a7fcc6c838e</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/clc2.c</file>
@@ -3169,7 +3169,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files/clc1.c</file>
-         <hash>53f572e6dca18113453bc0bdb4f78d3fa89d33ad41ff9e01940200ff7e938fa2</hash>
+         <hash>0a3892da2f46c27d9b93d6e35d832c621e3c5b619895ce83fbbc7b11af06e2c2</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/device_config.h</file>

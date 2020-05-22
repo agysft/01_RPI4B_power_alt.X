@@ -82,11 +82,11 @@ void CLC2_Initialize(void)
     PIE3bits.CLC2IE = 1;
 }
 
-void CLC2_ISR(void)
-{
-    // Clear the CLC interrupt flag
-    PIR3bits.CLC2IF = 0;
-}
+//void CLC2_ISR(void)
+//{
+//    // Clear the CLC interrupt flag
+//    PIR3bits.CLC2IF = 0;
+//}
 
 bool CLC2_OutputStatusGet(void)
 {
