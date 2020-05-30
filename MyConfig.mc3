@@ -34,7 +34,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.mcu8.Mcu8PeripheralLibrary" version="1.80.0"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.mcu8.Mcu8PeripheralLibrary" version="1.81.0"/>
    </usedLibraries>
    <tokenMap class="java.util.HashMap">
       <entry>
@@ -1430,12 +1430,12 @@
          <value>disabled</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="System Module" registerAlias="CONFIG1" settingAlias="CP" alias="OFF"/>
-         <value>128</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Interrupt Module" name="IVT_NAME"/>
          <value>IVT1</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="System Module" registerAlias="CONFIG1" settingAlias="CP" alias="OFF"/>
+         <value>128</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="CLC1" registerAlias="CLCGLS0" settingAlias="LCG1D3T"/>
@@ -3145,55 +3145,55 @@
    <generatedFileHashHistoryMap class="java.util.HashMap">
       <entry>
          <file>mcc_generated_files/interrupt_manager.h</file>
-         <hash>414741f472e27ff562413fe8d8fc04167eda8b67269ecef5eefdd024b11365b5</hash>
+         <hash>ed3cf59332ff26b28ea9b9dcde4caa6508440c5ace1a2e40df7c1da8311e38b2</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/clc2.h</file>
-         <hash>da4a1b00bc44a94a6e0f1ac058e0d801a801ac92604b7319ed868d7d02f4acdb</hash>
+         <hash>a1cb6b5b0d1d5b1cdb5e48f3ff42f7d5843a25205e15ef9b284ec1448a98f9d6</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/pin_manager.h</file>
-         <hash>b8af9e42ed969e6631625050be7f916668ca1eac9741a81aca2ad153a7163692</hash>
-      </entry>
-      <entry>
-         <file>main.c</file>
-         <hash>6c4f9062fae1429f90358272424a73a6b4c1acf28244b6b06cc494d297a9fcfc</hash>
+         <hash>f182f06221181cf1a1c3b1e2aa691bd27dad289473525eb5d5a8a5bc8bbe8509</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/clc1.h</file>
-         <hash>a8fcadce2ffb96b1cda1657e37b2d88fe6eea282efe9deb164484a7fcc6c838e</hash>
+         <hash>d89eb9143dafda8c4d0d27164e8fc36b006024fd943db541238c08f8657f7d8c</hash>
+      </entry>
+      <entry>
+         <file>main.c</file>
+         <hash>e2c25242577c7cb8bfc7b307fbb8b9edb19ed9a8c02f921d1ecc66cc94d8c574</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/clc2.c</file>
-         <hash>a5eb26ebe5484da5dcc152c0f5a961a10a3834ccb424020203651682f9d6b8fc</hash>
+         <hash>e65e7d8f4e31b44022dbecba5840c60512677783eb03f2846da59bd5b722977c</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/clc1.c</file>
-         <hash>0a3892da2f46c27d9b93d6e35d832c621e3c5b619895ce83fbbc7b11af06e2c2</hash>
+         <hash>684d7c9c23c36b41de7728cb40f6c5f754be4502f8b3f1f88530f5d286e13bd8</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/device_config.h</file>
-         <hash>b0f058cad30b24831248d899a2211649091fbef23c97bb120eba1f6ec12b8312</hash>
+         <hash>1ad14524be983ae4be7301d4fe0a90c231d494762f32bc00573e6de4d45de315</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/mcc.h</file>
-         <hash>925ea0971816135918b47befbcec87cf645baa18efd00f66bfff5705605ee98c</hash>
+         <hash>7416fac2cbc109a4801fc4567683972f363c36dde905258ace80ddaef603f30b</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/device_config.c</file>
-         <hash>bb94856ce6d396098e458fdee1226bc244e699fa7035ece4a87c788fb1f6c6cd</hash>
+         <hash>7765e2a95afa9bea88e2f3403f14dec23182338e672144b473c857649253bfb4</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/interrupt_manager.c</file>
-         <hash>cb3500cb4fa49bffedc277ab08edbfaa6cc797b4a6c8db9d1dc09fee0b8137ed</hash>
+         <hash>4a716df7663a905d29e5ad51388e7d169e634faec0cbf5bc22084955c29ecbeb</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/mcc.c</file>
-         <hash>f2bebabaf1126950414ea58edc1f6adfbbcff72f0fdde5a337c7ec1bd125e0c5</hash>
+         <hash>fdee7a51671bee3a30585f46289955515cad63af900990315a61ff460861a967</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/pin_manager.c</file>
-         <hash>55100962a5c6dc74126c34259e08282dbc2afcd32f89683623cec9be97cabc0c</hash>
+         <hash>c7c3d47a95d7202d45c70de6eb9fb087bed5d4bf79de62df22e43d29b1d77556</hash>
       </entry>
    </generatedFileHashHistoryMap>
    <mc3libFileHashHistoryMap class="java.util.HashMap"/>
