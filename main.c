@@ -83,13 +83,13 @@ void main(void)
          *   & Press the power button for 3 seconds to turn on.
          */
 
-        for(i=0;i<6;i++){  //wait for 1.5 seconds, blink LED
-            RA1 = ~RA1;
-            __delay_ms(100);
-            RA1 = ~RA1;
-            __delay_ms(150);
-        }
         if ( IntSource == 2){
+            for(i=0;i<6;i++){  //wait for 1.5 seconds, blink LED
+                RA1 = ~RA1;
+                __delay_ms(100);
+                RA1 = ~RA1;
+                __delay_ms(150);
+            }
             if (POffFlug){
                 for(i=0;i<12;i++){  //wait for 3 seconds, blink LED
                     RA1 = ~RA1;
@@ -101,7 +101,7 @@ void main(void)
                 RC2 = 1;        // Power Off
                 POffFlug = false;
             } else {
-                if (RC3){
+                if (RC3 == 1){
                     POffFlug = true;
                     RA1 = 0;        // LED OFF
                 } else {
@@ -121,7 +121,7 @@ void main(void)
             }
         }
         if ( IntSource == 1){
-            for(i=0;i<6;i++){  //wait for 1.5 seconds, blink LED
+            for(i=0;i<4;i++){  //wait for 1 seconds, blink LED
                 RA1 = ~RA1;
                 __delay_ms(100);
                 RA1 = ~RA1;

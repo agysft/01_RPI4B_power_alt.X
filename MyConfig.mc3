@@ -1430,12 +1430,12 @@
          <value>disabled</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Interrupt Module" name="IVT_NAME"/>
-         <value>IVT1</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="System Module" registerAlias="CONFIG1" settingAlias="CP" alias="OFF"/>
          <value>128</value>
+      </entry>
+      <entry>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Interrupt Module" name="IVT_NAME"/>
+         <value>IVT1</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="CLC1" registerAlias="CLCGLS0" settingAlias="LCG1D3T"/>
@@ -3156,12 +3156,12 @@
          <hash>f182f06221181cf1a1c3b1e2aa691bd27dad289473525eb5d5a8a5bc8bbe8509</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files/clc1.h</file>
-         <hash>d89eb9143dafda8c4d0d27164e8fc36b006024fd943db541238c08f8657f7d8c</hash>
-      </entry>
-      <entry>
          <file>main.c</file>
          <hash>e2c25242577c7cb8bfc7b307fbb8b9edb19ed9a8c02f921d1ecc66cc94d8c574</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files/clc1.h</file>
+         <hash>d89eb9143dafda8c4d0d27164e8fc36b006024fd943db541238c08f8657f7d8c</hash>
       </entry>
       <entry>
          <file>mcc_generated_files/clc2.c</file>
