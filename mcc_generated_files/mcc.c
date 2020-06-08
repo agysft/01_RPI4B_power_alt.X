@@ -59,8 +59,8 @@ void SYSTEM_Initialize(void)
 
 void OSCILLATOR_Initialize(void)
 {
-    // SCS FOSC; IRCF 31KHz_LF; 
-    OSCCON = 0x00;
+    // SCS INTOSC; IRCF 16MHz_HF; 
+    OSCCON = 0x7A;
     // SBOREN disabled; BORFS disabled; 
     BORCON = 0x00;
 }
