@@ -73,18 +73,6 @@ void i2c_TXDAT(char data){
     PIR1bits.SSP1IF = 0;
 }
 
-void i2c_SENDACK(){
-    SSP1CON2bits.ACKDT = 0;
-    SSP1CON2bits.ACKEN = 1;
-    while (SSP1CON2bits.ACKEN) {}
-}
-
-void i2c_SENDNACK(){
-    SSP1CON2bits.ACKDT = 1;
-    SSP1CON2bits.ACKEN = 1;
-    while (SSP1CON2bits.ACKEN) {}
-}
-
 void i2c_STOP(){
     SSP1CON2bits.PEN = 1;
     while (SSP1CON2bits.PEN == 1) {}
@@ -93,13 +81,6 @@ void i2c_STOP(){
 
 /******** I2C LCD ********/
 #define LCD_ADD 0x3E
-void writeLCDData(char t_data){
-    i2c_START();
-    i2c_TXDAT(LCD_ADD<<1);
-    i2c_TXDAT(0x40);
-    i2c_TXDAT(t_data);
-    i2c_STOP();
-}
 
 void writeLCDCommand(char t_command){
     i2c_START();
@@ -115,8 +96,8 @@ void LCD_Init(){
     writeLCDCommand(0x38);
     writeLCDCommand(0x39);
     writeLCDCommand(0x14);
-    writeLCDCommand(0x78);// contast LSB setting ; 0b0111 xxxx
-    writeLCDCommand(0x55);// 5V=0b0101 00xx, 3V=0b0101 01xx,  xx=contrast MSB
+    writeLCDCommand(0x75);// contast LSB setting ; 0b0111 xxxx
+    writeLCDCommand(0x50);// 5V=0b0101 00xx, 3V=0b0101 01xx,  xx=contrast MSB
     writeLCDCommand(0x6C);
     __delay_ms(250);
     writeLCDCommand(0x38);
@@ -127,15 +108,6 @@ void LCD_Init(){
 
 void LCD_xy(uint8_t x, uint8_t y){
     writeLCDCommand(0x80 + 0x40 * y + x);
-}
-
-void LCD_str(char *c) {
-    unsigned char i,wk;
-    for (i=0 ;i<8 ; i++) {
-        wk = c[i];
-        if  (wk == 0x00) {break;}
-        writeLCDData(wk);
-    }
 }
 
 void LCD_str2(char *c) {
