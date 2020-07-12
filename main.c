@@ -81,6 +81,23 @@ void i2c_STOP(){
 
 /******** I2C LCD ********/
 #define LCD_ADD 0x3E
+bool LCD = false;
+
+int Is_LCD_Connected(){
+    int exist_the_lcd = 1;  // 0: exist the LCD, 1: No LCD
+    
+    if ( (RC0 | RC1) != 0){ // if no pull-up
+        i2c_START();
+        i2c_TXDAT(LCD_ADD<<1);
+        exist_the_lcd = SSP1CON2bits.ACKSTAT;   // 1: No responded (= no ACK)
+        if ( exist_the_lcd == 0){
+            i2c_TXDAT(0x00);
+            i2c_TXDAT(0x00);    // dummy
+            i2c_STOP();
+        }
+    }
+    return exist_the_lcd;
+}
 
 void writeLCDCommand(char t_command){
     i2c_START();
@@ -159,18 +176,24 @@ void main(void)
     RA1 = 0;        // LED OFF
     
     I2C_init();
-    LCD_Init();
-    LCD_xy(0,0); LCD_str2("HELLO");
-    LCD_xy(0,1); LCD_str2("PI-SW");
+    if ( Is_LCD_Connected() == 0 ) {
+        LCD = true; 
+    } else {
+        LCD = false;
+    }
+    
+    if (LCD) LCD_Init();
+    if (LCD) { LCD_xy(0,0); LCD_str2("HELLO"); }
+    if (LCD) { LCD_xy(0,1); LCD_str2("PI-SW"); }
     
     while (1)
     {
         NOP();
         SLEEP();
-        LCD_clear();
+        if (LCD) LCD_clear();
 
         if ( IntSource == 2 ){
-            LCD_xy(0,1); LCD_str2("INT RPi");
+            if (LCD) { LCD_xy(0,1); LCD_str2("INT RPi"); }
             for(i=0;i<6;i++){  //wait for 1.5 seconds, blink LED
                 RA1 = ~RA1; __delay_ms(100);
                 RA1 = ~RA1; __delay_ms(150);
@@ -180,7 +203,7 @@ void main(void)
                     RA1 = ~RA1; __delay_ms(100);
                     RA1 = ~RA1; __delay_ms(150);
                 }
-                LCD_xy(0,0); LCD_str2("Pow OFF1");
+                if (LCD) { LCD_xy(0,0); LCD_str2("Pow OFF1"); }
                 RA1 = 0;        // LED OFF
                 RC2 = 1;        // Power Off
                 POffFlug = false;
@@ -188,18 +211,18 @@ void main(void)
                 if (RC3){
                     POffFlug = true;
                     RA1 = 0;        // LED OFF
-                    LCD_xy(0,1); LCD_str2("POffFlug");
+                    if (LCD) { LCD_xy(0,1); LCD_str2("POffFlug"); }
                 } else {
                     for(i=0;i<120;i++){ //wait for 120 seconds maximum, blink LED
                         RA1 = 0; __delay_ms(700);
                         RA1 = 1; __delay_ms(300);
                         if (RC3) {
-                            LCD_xy(0,1); LCD_str2("RPi RBT");
+                            if (LCD) { LCD_xy(0,1); LCD_str2("RPi RBT"); }
                             break; // RC3==1 when reboot
                         }
                     }
                     if (!RC3){
-                        LCD_xy(0,0); LCD_str2("Pow OFF2");
+                        if (LCD) { LCD_xy(0,0); LCD_str2("Pow OFF2"); }
                         RA1 = 0;        // LED OFF
                         RC2 = 1;        // Power Off
                         POffFlug = false;
@@ -208,19 +231,19 @@ void main(void)
             }
         }
         if ( (IntSource == 1) && (!POffFlug) ){
-            LCD_xy(0,1); LCD_str2("INT SW");
+            if (LCD) { LCD_xy(0,1); LCD_str2("INT SW"); }
             for(i=0;i<4;i++){  //wait for 1 seconds, blink LED
                 RA1 = ~RA1; __delay_ms(100);
                 RA1 = ~RA1; __delay_ms(150);
             }
             if ( RA5 & (!RC3) ){  // if SW==On and RPi==OFF
-                LCD_xy(0,0); LCD_str2("Pow ON");
+                if (LCD) { LCD_xy(0,0); LCD_str2("Pow ON"); }
                 RC2 = 0;        // Power On
                 for(i=0;i<120;i++){ //wait for 120 seconds maximum, blink LED
                     RA1 = 0; __delay_ms(700);
                     RA1 = 1; __delay_ms(300);
                     if (RC3 == 1) {
-                        LCD_xy(0,1); LCD_str2("RPi ON");
+                        if (LCD) { LCD_xy(0,1); LCD_str2("RPi ON"); }
                         break;
                     }
                 }
